@@ -422,10 +422,10 @@ to:1
 并为您自己的功能添加文档
 提示：内置文档方法是__doc__
 '''
-# print(abs.__doc__)
-# print(int.__doc__)
-# print(input.__doc__)
-# def square(n):
-#     return n**2
-# print(square(2))
-# print(square.__doc__)
+print(abs.__doc__)
+print(int.__doc__)
+print(input.__doc__)
+def square(n):
+    return n**2
+print(square(2))
+print(square.__doc__)
