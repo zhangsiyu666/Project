@@ -64,7 +64,7 @@ if __name__ == '__main__':
     app_fname = '/var/www/download/mysite-%s.tar.gz' % r.text
     wget.download(app_url,download_dir)
 
-    #校验软件包是否损坏,如果损坏则删除
+    #校验软件包是否损坏,如果损坏则删除;
     md5url = app_url+'.md5'
     if not file_ok(app_fname,md5url):
         print("文件已损坏")
