@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cd2872a-de61-42bf-b277-3ab8adb0abdf" name="Default Changelist" comment="exe">
-      <change afterPath="$PROJECT_DIR$/Script_Test/report_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Script_Test/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/test job" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Script_Test/report.py" beforeDir="false" afterPath="$PROJECT_DIR$/Script_Test/report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_6_30_19_10_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_6_30_19_10__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MyFirstRepositories" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="vcs.Mercurial" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -340,7 +340,8 @@
       <workItem from="1624934750861" duration="10000" />
       <workItem from="1624934848616" duration="6222000" />
       <workItem from="1625050989378" duration="627000" />
-      <workItem from="1625051629630" duration="475000" />
+      <workItem from="1625051629630" duration="966000" />
+      <workItem from="1625052612555" duration="374000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1618801832478</created>
@@ -426,7 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1625051775125</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="exe">
+      <created>1625052251181</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1625052251181</updated>
+    </task>
+    <task id="LOCAL-00014" summary="exe">
+      <created>1625052315456</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1625052315456</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
