@@ -312,23 +312,23 @@ D 100
 输出为
 500
 '''
-s_account=0
-while True:
-    print('请输入存/取款金额:')
-    InputStr=input()
-    if not InputStr:
-        break
-    values=InputStr.split(' ')   #values是一个列表，以空格为间隔，来取InputStr字符串内的元素
-    print(values)
-    operation=values[0]
-    account=int(values[1])
-    if operation=='D':
-      s_account+=account
-    elif operation=='W':
-      s_account-=account
-    else:
-        pass
-print(s_account)
+# s_account=0
+# while True:
+#     print('请输入存/取款金额:')
+#     InputStr=input()
+#     if not InputStr:
+#         break
+#     values=InputStr.split(' ')   #values是一个列表，以空格为间隔，来取InputStr字符串内的元素
+#     print(values)
+#     operation=values[0]
+#     account=int(values[1])
+#     if operation=='D':
+#       s_account+=account
+#     elif operation=='W':
+#       s_account-=account
+#     else:
+#         pass
+# print(s_account)
 
 '''Q18.....要求用户输入用户名和密码进行注册。编写程序以检查用户输入的密码合规性。
 要求密码 a-z至少有一个字母，0-9至少有一个数字，A-Z至少有一个字母， $#@至少有一个字符 最短密码长度为6 最大长度为12
