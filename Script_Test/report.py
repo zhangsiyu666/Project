@@ -16,14 +16,13 @@ def get_JES():
 
 
 login_url = "https://control.zenlayer.com/zenlayer_web/login/tologin"
-
 login_user = {'user': 'luke.xi',
-              'pass': 'XiwangXW.1995',
+              'pass': 'GNh6Pgj3FdS8s3tE',
               'time_zone': '8',
               'op': '0'
               }
-files = [
-]
+
+files = []
 jess = get_JES()
 jes = 'JSESSIONID={}; lang=en'.format(jess)
 headers = {
@@ -34,7 +33,9 @@ before_time = ((date.today() - timedelta(365)).strftime("%Y-%m-%d"))
 time = (time.strftime("%Y-%m-%d", time.localtime()))
 xls_url = "https://control.zenlayer.com/zenlayer_web/finance/report/down_excel?report_id=110&start_date=%s&end_date=%s" %(before_time, time)
 xls = requests.request("GET", xls_url, headers=headers, files=files)
+
+
 file = open("/opt/report/%s~%s.xls" % (before_time, time), "wb")
 for chunk in xls.iter_content(chunk_size=1024):
-    if chunk:
+     if chunk:
         file.write(chunk)
