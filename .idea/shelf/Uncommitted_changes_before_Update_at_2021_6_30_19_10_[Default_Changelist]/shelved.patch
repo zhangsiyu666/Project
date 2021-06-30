@@ -1,0 +1,212 @@
+Index: Script_Test/report.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import requests\r\nimport time\r\nfrom datetime import date\r\nfrom datetime import timedelta\r\n\r\n\r\ndef get_JES():\r\n    url = \"https://control.zenlayer.com/zenlayer_web/login\"\r\n    payload = {}\r\n    session = requests.Session()\r\n    session.get(url, data=payload)\r\n    ts = session.cookies.get_dict()\r\n    jes = ts['JSESSIONID']\r\n    print(jes)\r\n    return jes\r\n\r\n\r\nlogin_url = \"https://control.zenlayer.com/zenlayer_web/login/tologin\"\r\n\r\nlogin_user = {'user': 'luke.xi',\r\n              'pass': 'XiwangXW.1995',\r\n              'time_zone': '8',\r\n              'op': '0'\r\n              }\r\nfiles = [\r\n]\r\njess = get_JES()\r\njes = 'JSESSIONID={}; lang=en'.format(jess)\r\nheaders = {\r\n    'Cookie': jes\r\n}\r\nresponse = requests.request(\"POST\", login_url, headers=headers, data=login_user, files=files)\r\nbefore_time = ((date.today() - timedelta(365)).strftime(\"%Y-%m-%d\"))\r\ntime = (time.strftime(\"%Y-%m-%d\", time.localtime()))\r\nxls_url = \"https://control.zenlayer.com/zenlayer_web/finance/report/down_excel?report_id=110&start_date=%s&end_date=%s\" %(before_time, time)\r\nxls = requests.request(\"GET\", xls_url, headers=headers, files=files)\r\nfile = open(\"/opt/report/%s~%s.xls\" % (before_time, time), \"wb\")\r\nfor chunk in xls.iter_content(chunk_size=1024):\r\n    if chunk:\r\n        file.write(chunk)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Script_Test/report.py b/Script_Test/report.py
+--- a/Script_Test/report.py	(revision 3d92af20fd1f3eb7dc817f5b719bf360375009e5)
++++ b/Script_Test/report.py	(date 1622631632415)
+@@ -16,14 +16,13 @@
+ 
+ 
+ login_url = "https://control.zenlayer.com/zenlayer_web/login/tologin"
+-
+ login_user = {'user': 'luke.xi',
+-              'pass': 'XiwangXW.1995',
++              'pass': 'GNh6Pgj3FdS8s3tE',
+               'time_zone': '8',
+               'op': '0'
+               }
+-files = [
+-]
++
++files = []
+ jess = get_JES()
+ jes = 'JSESSIONID={}; lang=en'.format(jess)
+ headers = {
+@@ -34,7 +33,9 @@
+ time = (time.strftime("%Y-%m-%d", time.localtime()))
+ xls_url = "https://control.zenlayer.com/zenlayer_web/finance/report/down_excel?report_id=110&start_date=%s&end_date=%s" %(before_time, time)
+ xls = requests.request("GET", xls_url, headers=headers, files=files)
++
++
+ file = open("/opt/report/%s~%s.xls" % (before_time, time), "wb")
+ for chunk in xls.iter_content(chunk_size=1024):
+-    if chunk:
++     if chunk:
+         file.write(chunk)
+\ No newline at end of file
+Index: MyStudy/DevOps/Urllib_ex.py
+===================================================================
+diff --git a/MyStudy/DevOps/Urllib_ex.py b/MyStudy/DevOps/Urllib_ex.py
+deleted file mode 100644
+--- a/MyStudy/DevOps/Urllib_ex.py	(revision 3d92af20fd1f3eb7dc817f5b719bf360375009e5)
++++ /dev/null	(revision 3d92af20fd1f3eb7dc817f5b719bf360375009e5)
+@@ -1,25 +0,0 @@
+-'''
+-urllib中包含了四个模块
+-urllib.request 可以用来发送request请求和获取request的结果
+-urllib.error包含了urllib.request产生的异常
+-urllib.parse用来解析和处理URL
+-urllib.robotparse用来解析页面的robots.txt文件
+-
+-爬取网页：
+-先需要导入到的模块：urllib.request
+-在导入了模块之后，我们需要使用urllib.request.urlopen打开并爬取一个网页
+-读取内容常见的三种格式：
+-read()读取文件的全部内容，与readlines()不同的是，read()会把读取到的内容赋给一个字符串变量
+-readlines()读取文件的全部内容，readlines()会把读取到的内容赋值给一个列表变量
+-readline()读取文件的一行内容
+-'''
+-import urllib.request
+-html1 = urllib.request.urlopen(r'http://www.python.org')
+-print(html1.read(100))
+-print(html1.read(100).decode())
+-print('================================================')
+-print(html1.readline())
+-print('================================================')
+-print(html1.readlines())
+-html1.close()
+-123
+\ No newline at end of file
+Index: MyStudy/DevOps/Test.py
+===================================================================
+diff --git a/MyStudy/DevOps/Test.py b/MyStudy/DevOps/Test.py
+deleted file mode 100644
+--- a/MyStudy/DevOps/Test.py	(revision 3d92af20fd1f3eb7dc817f5b719bf360375009e5)
++++ /dev/null	(revision 3d92af20fd1f3eb7dc817f5b719bf360375009e5)
+@@ -1,40 +0,0 @@
+-'''ping测试网段内的主机'''
+-import os
+-import subprocess
+-
+-def ping(host):
+-  result=subprocess.run(
+-      'ping -c2 %s &> /dev/null' % host, shell=True
+-  )
+-  if result.returncode==0:
+-      print('%s:UP' % host)
+-  else:
+-      pass
+-if __name__ == '__main__':
+-    ips = ['10.64.21.%s' % i for i in range(1,255)]
+-    for ip in ips:
+-        ret_val=os.fork()
+-        if not ret_val:
+-          ping(ip)
+-          exit()
+-
+-'''使用forking脚本，在父进程重打印 in parent 然后睡眠10秒
+-在子进程中编写循环，循环五次，输出当前系统时间，每次循环结束后睡眠一秒
+-父子进程结束后，分别打印parent exit 和 child exit
+-'''
+-# import datetime
+-# import os
+-# import time
+-# theTime=datetime.datetime.now()
+-# print('starting')
+-# ret_val=os.fork()
+-# if ret_val: #非0为真、父进程
+-#     print('in parent')
+-#     time.sleep(10)
+-#     print('parent exit')
+-# else:
+-#     print('in child')
+-#     for i in range(1,6):
+-#         print(theTime)
+-#         time.sleep(1)
+-#     print('child exit')
+\ No newline at end of file
+Index: Script_Test/report_test.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Script_Test/report_test.py b/Script_Test/report_test.py
+new file mode 100644
+--- /dev/null	(date 1622608708242)
++++ b/Script_Test/report_test.py	(date 1622608708242)
+@@ -0,0 +1,46 @@
++import smtplib
++from email.header import Header
++from email.mime.text import MIMEText
++from email.mime.multipart import MIMEMultipart
++from datetime import date
++from datetime import timedelta
++import time
++
++#定义了七天之前的时间以及当前的时间
++before_time =  ((date.today() - timedelta(7)).strftime("%Y-%m-%d"))
++current_time = (time.strftime("%Y-%m-%d", time.localtime()))
++
++#定义邮件的发送者、接受者、抄送对象
++sender = 'casey.zhang@zenlayer.com'
++to_receiver = 'saber.tang@zenlayer.com'
++cc_receiver = 'luke.xi@zenlayer.com'
++receiver = to_receiver + cc_receiver
++
++#定义发送者的账户以及密码，邮件标题
++username = 'casey.zhang@zenlayer.com'
++password = 'gznlcxpvsgkttkmz'
++mail_title = '%s-%s的测试工单汇总' % (before_time, time)
++
++#自定义的邮箱格式文本
++message = MIMEMultipart()
++message['From'] = sender
++message['To'] = to_receiver
++message['Cc'] = cc_receiver
++message['Subject'] = Header(mail_title, 'utf-8')
++
++#邮箱内容正文
++message.attach(MIMEText('您好！\n邮件为%s-%s测试工单汇总。\n请您查收附件，附件需要经过Office365安全检查，请等待1分钟。\n此邮件定时发送，有问题请联系我。\n\n\nBR,\nCasey' % (before_time, current_time), 'plain', 'utf-8'))
++
++#定义要发送的附件
++att1 = MIMEText(open('../Test/test job', 'rb').read(), 'base64', 'utf-8')
++att1["Content-Type"] = 'application/octet-stream'
++att1["Content-Disposition"] = 'attachment; filename="%s~%s.txt"' % (before_time, time)
++message.attach(att1)
++
++#引用smtplib模块实现发送邮件功能
++smtpObj = smtplib.SMTP('smtp.office365.com', 587)
++smtpObj.ehlo()
++smtpObj.starttls()
++smtpObj.login(username, password)
++smtpObj.sendmail(sender, to_receiver.split(',') + cc_receiver.split(','), message.as_string())
++smtpObj.quit()
+\ No newline at end of file
+Index: Test/test job
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Test/test job b/Test/test job
+new file mode 100644
+--- /dev/null	(date 1622541690735)
++++ b/Test/test job	(date 1622541690735)
+@@ -0,0 +1,1 @@
++测试
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/pythonProject.iml\" filepath=\"$PROJECT_DIR$/.idea/pythonProject.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+--- a/.idea/modules.xml	(revision 3d92af20fd1f3eb7dc817f5b719bf360375009e5)
++++ b/.idea/modules.xml	(date 1622447575607)
+@@ -2,7 +2,7 @@
+ <project version="4">
+   <component name="ProjectModuleManager">
+     <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/pythonProject.iml" filepath="$PROJECT_DIR$/.idea/pythonProject.iml" />
++      <module fileurl="file://$PROJECT_DIR$/.idea/MyPyProject.iml" filepath="$PROJECT_DIR$/.idea/MyPyProject.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file
+diff --git a/Script_Test/test.py b/Script_Test/test.py
+new file mode 100644
